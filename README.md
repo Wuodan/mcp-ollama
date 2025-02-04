@@ -1,12 +1,6 @@
 # MCP Ollama
 
-A Model Context Protocol (MCP) server for integrating Ollama with Claude and other MCP clients.
-
-## Installation
-
-```bash
-pip install mcp-ollama
-```
+A Model Context Protocol (MCP) server for integrating Ollama with Claude Desktop or other MCP clients.
 
 ## Requirements
 
@@ -14,16 +8,7 @@ pip install mcp-ollama
 - Ollama installed and running (https://ollama.com/download)
 - At least one model pulled with Ollama (e.g., `ollama pull llama2`)
 
-## Usage
-
-### Command Line
-
-Run the server directly:
-```bash
-mcp-ollama
-```
-
-### With Claude Desktop
+### Configure Claude Desktop
 
 Add to your Claude Desktop configuration (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS, `%APPDATA%\Claude\claude_desktop_config.json` on Windows):
 
@@ -31,7 +16,10 @@ Add to your Claude Desktop configuration (`~/Library/Application Support/Claude/
 {
   "mcpServers": {
     "ollama": {
-      "command": "mcp-ollama"
+      "command": "uvx",
+      "args": [
+        "mcp-ollama"
+      ]
     }
   }
 }
