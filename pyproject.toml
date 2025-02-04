@@ -9,9 +9,7 @@ description = "MCP server for Ollama integration"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
-authors = [
-    { name = "Matt" }
-]
+authors = [{ name = "Matt" }]
 keywords = ["mcp", "ollama", "llm"]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -20,19 +18,12 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12"
+    "Programming Language :: Python :: 3.12",
 ]
-dependencies = [
-    "mcp[cli]",
-    "ollama",
-]
+dependencies = ["mcp[cli]", "ollama"]
 
 [project.optional-dependencies]
-dev = [
-    "ruff",
-    "build",
-    "twine"
-]
+dev = ["ruff", "build", "twine"]
 
 [project.scripts]
 mcp-ollama = "mcp_ollama.__main__:main"
