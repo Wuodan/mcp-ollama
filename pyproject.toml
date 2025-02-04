@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mcp-ollama"
-version = "0.1.1"
+version = "0.1.2"
 description = "MCP server for Ollama integration"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -29,5 +29,5 @@ dev = ["ruff", "build", "twine"]
 mcp-ollama = "mcp_ollama.__main__:main"
 
 [project.urls]
-"Homepage" = "https://github.com/yourusername/mcp-ollama"
-"Bug Tracker" = "https://github.com/yourusername/mcp-ollama/issues"
+"Homepage" = "https://github.com/emgeee/mcp-ollama"
+"Bug Tracker" = "https://github.com/emgeee/mcp-ollama/issues"
