@@ -26,7 +26,7 @@ dependencies = ["mcp[cli]", "ollama"]
 dev = ["ruff", "build", "twine"]
 
 [project.scripts]
-mcp-ollama = "mcp_ollama.__main__:run_server"
+mcp-ollama = "mcp_ollama.__main__:main"
 
 [project.urls]
 "Homepage" = "https://github.com/yourusername/mcp-ollama"

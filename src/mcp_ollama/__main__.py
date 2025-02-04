@@ -2,5 +2,8 @@
 
 from .server import run_server
 
-if __name__ == "__main__":
+def main():
     run_server()
+
+if __name__ == "__main__":
+    main()
