@@ -2,6 +2,8 @@
 
 A Model Context Protocol (MCP) server for integrating Ollama with Claude Desktop or other MCP clients.
 
+<a href="https://glama.ai/mcp/servers/h0t3210s62"><img width="380" height="200" src="https://glama.ai/mcp/servers/h0t3210s62/badge" alt="Ollama Server MCP server" /></a>
+
 ## Requirements
 
 - Python 3.10 or higher
