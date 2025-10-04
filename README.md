@@ -43,10 +43,19 @@ mcp dev src/mcp_ollama/server.py
 
 ## Features
 
-The server provides four main tools:
+The server provides five main tools:
 - `list_models` - List all downloaded Ollama models
 - `show_model` - Get detailed information about a specific model
 - `ask_model` - Ask a question to a specified model
+- `ask_default_model` - Ask a question to the default model (must be configured)
+- `get_default_model` - Get the current default model name
+
+## Configuration
+
+### Environment Variables
+
+- `OLLAMA_HOST` - Ollama server URL (default: `http://127.0.0.1:11434`)
+- `DEFAULT_MODEL` - Default model name for `ask_default_model` (optional)
 
 ## License
 

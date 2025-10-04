@@ -8,6 +8,7 @@ from ollama import Client
 
 import os
 DEFAULT_URL = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434")
+DEFAULT_MODEL = os.environ.get("DEFAULT_MODEL")
 
 ollama = Client(host=DEFAULT_URL)
 
@@ -89,6 +90,37 @@ async def ask_model(model: str, question: str) -> str:
         return response['message']['content']
     except Exception as e:
         return f"Error querying model: {str(e)}"
+
+@mcp.tool()
+async def ask_default_model(question: str) -> str:
+    """Ask a question to the default Ollama model
+
+    Args:
+        question: The question to ask the model
+    """
+    if not DEFAULT_MODEL:
+        return "Error: No default model configured"
+
+    try:
+        response = ollama.chat(
+            model=DEFAULT_MODEL,
+            messages=[{
+                'role': 'user',
+                'content': question
+            }]
+        )
+        return response['message']['content']
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+@mcp.tool()
+async def get_default_model() -> str:
+    """Get the current default model"""
+    if not DEFAULT_MODEL:
+        return "No default model configured"
+    return DEFAULT_MODEL
+
+
 
 def run_server() -> None:
     """Run the MCP server using stdio transport."""
