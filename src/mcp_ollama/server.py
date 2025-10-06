@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 
 """MCP server implementation for Ollama integration."""
+from typing import Annotated
 
 from mcp.server.fastmcp import FastMCP
 from ollama import Client
-
-
 import os
-DEFAULT_URL = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434")
 
+from pydantic import Field
+
+DEFAULT_URL = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434")
 ollama = Client(host=DEFAULT_URL)
 
 # Initialize FastMCP server
@@ -17,9 +18,12 @@ mcp = FastMCP(
     dependencies=["ollama"]
 )
 
-@mcp.tool()
+
+@mcp.tool(
+    name="list_models",
+    description="List all downloaded Ollama models"
+)
 async def list_models() -> str:
-    """List all downloaded Ollama models"""
     try:
         models = ollama.list()
         if not models.get('models'):
@@ -37,13 +41,14 @@ async def list_models() -> str:
     except Exception as e:
         return f"Error listing models: {str(e)}"
 
-@mcp.tool()
-async def show_model(name: str) -> str:
-    """Get detailed information about a specific model
 
-    Args:
-        name: Name of the model to show information about
-    """
+@mcp.tool(
+    name="show_model",
+    description="Get detailed information about a specific model"
+)
+async def show_model(
+        name: Annotated[str, Field(description="Name of the model to show information about")]
+) -> str:
     try:
         model_info = ollama.show(name)
         if not model_info:
@@ -70,14 +75,15 @@ async def show_model(name: str) -> str:
     except Exception as e:
         return f"Error getting model information: {str(e)}"
 
-@mcp.tool()
-async def ask_model(model: str, question: str) -> str:
-    """Ask a question to a specific Ollama model
 
-    Args:
-        model: Name of the model to use (e.g., 'llama2')
-        question: The question to ask the model
-    """
+@mcp.tool(
+    name="ask_model",
+    description="Ask a question to a specific Ollama model"
+)
+async def ask_model(
+        model: Annotated[str, Field(description="Name of the model to use (e.g., 'llama2')")],
+        question: Annotated[str, Field(description="The question to ask the model")],
+) -> str:
     try:
         response = ollama.chat(
             model=model,
@@ -90,9 +96,11 @@ async def ask_model(model: str, question: str) -> str:
     except Exception as e:
         return f"Error querying model: {str(e)}"
 
+
 def run_server() -> None:
     """Run the MCP server using stdio transport."""
     mcp.run(transport='stdio')
+
 
 if __name__ == "__main__":
     run_server()
