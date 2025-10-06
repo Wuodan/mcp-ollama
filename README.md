@@ -27,6 +27,10 @@ Add to your Claude Desktop configuration (`~/Library/Application Support/Claude/
 }
 ```
 
+##R Running in Docker
+
+Usage examples for running mcp-ollama with Docker are documented on the [Docker Hub page](https://hub.docker.com/r/wuodan/mcp-ollama).
+
 ### Development
 
 Install in development mode:
